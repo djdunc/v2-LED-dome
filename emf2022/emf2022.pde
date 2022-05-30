@@ -4,7 +4,6 @@ Tunnel tunnel;
 PImage img1;  
 PImage img2;  
 
-
 int n = 5;     //pentagram
 float r = 170; //size of pentagram
 int timer;
@@ -13,18 +12,15 @@ int displaymode = 1;
 void setup() {
   
   // Set some sketch drawing settings
-  size(600, 600);
+  size(800, 600);
   rectMode(CENTER);  
   ellipseMode(RADIUS);
   noFill();
   stroke(255);
   smooth();
   
-  // Connect to the local instance of fcserver
-  opc = new OPC(this, "127.0.0.1", 7890);
-  
-  // Load in locations of LEDs in geodesic dome layout
-  table = loadTable("locations.csv", "header");
+  opc = new OPC(this, "127.0.0.1", 7890);        // Connect to the local instance of fcserver 
+  table = loadTable("locations.csv", "header");  // Load in locations of LEDs in geodesic dome layout
   setupLEDs();
   
   // Setup a tunnel instance
@@ -40,7 +36,7 @@ void draw() {
   background(0); // need to keep redrawing canvas so set ot black at each loop
   translate(width/2, height/2); //since radial about centre -> move 0,0 coordinates to centre
   
-  if (millis() - timer >= 20000) {
+  if (millis() - timer >= 2000) {
     println(displaymode);
     displaymode = displaymode + 1;
     if (displaymode > 4){
